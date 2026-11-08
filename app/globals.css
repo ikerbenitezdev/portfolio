@@ -1,0 +1,91 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  position: relative;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(ellipse 40rem 35rem at 5% 5%, rgba(147, 231, 220, 0.35), transparent 70%),
+    radial-gradient(ellipse 35rem 35rem at 95% 12%, rgba(159, 217, 246, 0.34), transparent 70%),
+    #fff;
+  color: #16353c;
+  font-family: var(--font-body), system-ui, sans-serif;
+  overflow-x: hidden;
+}
+
+main > section {
+  scroll-margin-top: 6rem !important;
+}
+
+#recorrido,
+#primer-si {
+  background: linear-gradient(180deg, transparent, rgba(216, 246, 241, 0.18), transparent);
+}
+
+#viajes,
+#ahora,
+#contacto {
+  background: linear-gradient(180deg, transparent, rgba(48, 113, 143, 0.08), transparent);
+}
+
+::selection {
+  background: rgba(124, 227, 191, 0.25);
+  color: #16353c;
+}
+
+@layer components {
+  .glass-card {
+    @apply rounded-3xl border border-white/80 bg-white/85 shadow-glass backdrop-blur-xl;
+  }
+}
+
+.skip-link {
+  position: fixed;
+  top: 0.5rem;
+  left: 0.5rem;
+  z-index: 100;
+  padding: 0.8rem 1rem;
+  border-radius: 0.75rem;
+  background: #16353c;
+  color: white;
+  transform: translateY(-200%);
+}
+
+.skip-link:focus {
+  transform: none;
+  outline: 3px solid #08756e;
+  outline-offset: 3px;
+}
+
+.travel-marker:focus-visible {
+  outline: none;
+}
+
+.travel-marker:focus-visible .travel-marker-focus {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .journey-entrance {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .journey-scroll-indicator {
+    transform: none !important;
+  }
+}

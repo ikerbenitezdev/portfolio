@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 600">
+  <!-- TODO: sustituir por fotografías propias de cada viaje. -->
+  <rect width="960" height="600" fill="#e1f3fc"/>
+  <circle cx="700" cy="170" r="95" fill="#fbf2df"/>
+  <path d="M0 400c130-100 230-80 345 0s205 65 320-12 205-78 295-25v237H0Z" fill="#bce9e5"/>
+  <path d="M0 470c150-70 245-40 350 10s220 40 315-15 205-30 295 8v127H0Z" fill="#94d3cf"/>
+  <rect x="50" y="52" width="270" height="54" rx="27" fill="#fff" fill-opacity=".85"/>
+  <text x="75" y="87" fill="#285a5a" font-family="sans-serif" font-size="21">TODO · Foto del viaje</text>
+</svg>
