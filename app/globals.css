@@ -333,12 +333,18 @@ a { color: inherit; }
     opacity: 0; visibility: hidden; transition: opacity 0.35s, visibility 0.35s;
   }
   .site-header.is-open .site-header__nav { opacity: 1; visibility: visible; }
+  /* el blur de la barra encerraba el menú fijo dentro de la cabecera: abierto, sin blur */
+  .site-header.is-open { backdrop-filter: none; -webkit-backdrop-filter: none; background: var(--bg); }
+  .site-header__nav { height: 100svh; }
+  html.menu-open, html.menu-open body { overflow: hidden; }
   .site-header__nav .pill-button { font-size: 17px; }
   .site-header__logo { position: relative; z-index: 2; }
   .hero { padding-bottom: 32px; }
   .hero__name { font-size: 22vw; }
   .hero__line--last { justify-content: flex-start; }
   .hero__shapes { font-size: 0.48em; }
+  /* en el móvil la foto va al doble de tamaño */
+  .hero__shapes .shape--portrait { width: 1.72em; height: 1.72em; }
   .hero__shapes .shape--star { display: none; }
   .site-footer__name { font-size: 22vw; }
   .hero__foot { grid-template-columns: 1fr; gap: 20px; }

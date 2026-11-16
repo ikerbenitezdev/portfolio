@@ -9,9 +9,14 @@ export default function Header() {
 
   useEffect(() => {
     if (!open) return;
+    // Con el menú abierto la página no se desplaza por detrás.
+    document.documentElement.classList.add('menu-open');
     const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setOpen(false); };
     document.addEventListener('keydown', onKey);
-    return () => document.removeEventListener('keydown', onKey);
+    return () => {
+      document.documentElement.classList.remove('menu-open');
+      document.removeEventListener('keydown', onKey);
+    };
   }, [open]);
 
   return (
