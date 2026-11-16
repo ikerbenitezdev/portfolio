@@ -17,7 +17,10 @@
 
 *, *::before, *::after { box-sizing: border-box; }
 html, body { margin: 0; }
-html { -webkit-text-size-adjust: 100%; }
+html { -webkit-text-size-adjust: 100%; overflow-x: clip; }
+/* nada se sale por los lados: el nombre del hero se desplaza con el scroll y las capturas van giradas */
+main, .site-footer { overflow-x: clip; }
+.hero, .projects, .about { overflow-x: clip; }
 html.lenis, html.lenis body { height: auto; }
 .lenis.lenis-smooth { scroll-behavior: auto !important; }
 body {
