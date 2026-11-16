@@ -1,17 +1,26 @@
-'use client';
-
-import { useEffect, useState } from 'react';
-import { contactContent } from '../data/social';
+import { navigation } from '../data/navigation';
+import { footerContent as f, socialLinks } from '../data/social';
+import { heroContent } from '../data/timeline';
 
 export default function Footer() {
-  const [year, setYear] = useState<number>();
-  useEffect(() => { setYear(new Date().getFullYear()); }, []);
-
   return (
-    <footer className="px-6 pb-10 sm:px-10">
-      <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-4 border-t border-ink/10 pt-7 text-sm text-slate-700">
-        <span>{year && `© ${year} · `}{contactContent.footer}</span>
-        <a href="#inicio" className="font-bold text-turquoise-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-turquoise-700">{contactContent.backToTop}</a>
+    <footer className="site-footer">
+      <div className="site-footer__top">
+        <p className="site-footer__tagline">{f.tagline}</p>
+        <nav aria-label="Pie de página" className="site-footer__links">
+          {navigation.map((item) => (<a key={item.id} href={`#${item.id}`}>{item.label}</a>))}
+          <a href="#contacto">Contacto</a>
+        </nav>
+        <ul className="site-footer__social">
+          {socialLinks.map((s) => (<li key={s.name}><a href={s.url} rel="noopener">{s.name} <span aria-hidden="true">↗</span></a></li>))}
+        </ul>
+      </div>
+      <p className="site-footer__name" aria-hidden="true">{heroContent.first}<span>{heroContent.last}</span></p>
+      <div className="site-footer__legal">
+        <span>© 2026 {heroContent.name}</span>
+        <span>{f.madeWith}</span>
+        <a href="/creditos">{f.credits}</a>
+        <a href="#top">Volver arriba ↑</a>
       </div>
     </footer>
   );

@@ -4,3 +4,6 @@
 .next-*/
 node_modules/
 *.tsbuildinfo
+.taste-skill/
+public/.taste-skill/
+shots/

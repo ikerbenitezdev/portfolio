@@ -1,55 +1,34 @@
-import type { Metadata } from 'next';
-import { Space_Grotesk, Plus_Jakarta_Sans } from 'next/font/google';
+import type { Metadata, Viewport } from 'next';
+import { Bricolage_Grotesque, Instrument_Sans } from 'next/font/google';
 import './globals.css';
 import { socialLinks } from '../data/social';
 
-const spaceGrotesk = Space_Grotesk({
-  subsets: ['latin'],
-  variable: '--font-display',
-});
+const display = Bricolage_Grotesque({ subsets: ['latin'], variable: '--font-display', display: 'swap' });
+const body = Instrument_Sans({ subsets: ['latin'], variable: '--font-body', display: 'swap' });
 
-const plusJakartaSans = Plus_Jakarta_Sans({
-  subsets: ['latin'],
-  variable: '--font-body',
-});
+const title = 'Iker Benítez: desarrollador web de Menorca en Barcelona';
+const description = 'Estudio Ingeniería Informática y hago webs para negocios pequeños: un torneo de fútbol, una casa rural y un catálogo de pescado.';
 
 export const metadata: Metadata = {
-  title: 'Iker Benítez | De isla en isla',
-  description:
-    'El recorrido de Iker Benítez: de Menorca a Barcelona, aprendiendo y construyendo de isla en isla.',
+  title,
+  description,
   metadataBase: new URL('https://ikerbenitez.dev'),
-  alternates: { canonical: '/' },
-  openGraph: {
-    title: 'Iker Benítez | De isla en isla',
-    description:
-      'Una historia de aprendizaje, dudas y pasos hacia nuevas islas.',
-    type: 'website',
-    locale: 'es_ES',
-    url: '/',
-    siteName: 'Iker Benítez',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Iker Benítez | De isla en isla',
-    description: 'Una historia de aprendizaje, dudas y pasos hacia nuevas islas.',
-  },
+  openGraph: { title, description: 'Cuatro proyectos web y el recorrido de Menorca a Barcelona.', type: 'website', locale: 'es_ES', siteName: 'Iker Benítez', images: ['/share.jpg'] },
+  twitter: { card: 'summary_large_image', title, description: 'Cuatro proyectos web y el recorrido de Menorca a Barcelona.', images: ['/share.jpg'] },
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export const viewport: Viewport = { width: 'device-width', initialScale: 1, themeColor: '#f2eee5' };
+
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="es">
-      <body className={`${spaceGrotesk.variable} ${plusJakartaSans.variable}`}>
+    <html lang="es" className={`${display.variable} ${body.variable}`} suppressHydrationWarning>
+      <body>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
           '@context': 'https://schema.org',
           '@type': 'Person',
           name: 'Iker Benítez',
-          url: 'https://ikerbenitez.dev',
           jobTitle: 'Desarrollador web',
-          sameAs: socialLinks.flatMap((social) => social.url ? [social.url] : []),
+          sameAs: socialLinks.map((s) => s.url),
         }).replace(/</g, '\\u003c') }} />
         {children}
       </body>

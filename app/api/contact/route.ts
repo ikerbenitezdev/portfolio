@@ -30,9 +30,24 @@ export async function POST(request: Request) {
     return Response.json({ error: 'No se ha podido leer el mensaje.' }, { status: 400 });
   }
 
+  // El formulario de la página llega como FormData (system.js) o urlencoded (sin JavaScript);
+  // se sigue aceptando JSON.
+  const type = request.headers.get('content-type') || '';
   let body: unknown;
   try {
-    body = JSON.parse(raw);
+    if (type.includes('application/json')) {
+      body = JSON.parse(raw);
+    } else if (type.includes('multipart/form-data') || type.includes('application/x-www-form-urlencoded')) {
+      const form = await new Response(raw, { headers: { 'content-type': type } }).formData();
+      body = {
+        name: String(form.get('name') ?? ''),
+        email: String(form.get('email') ?? ''),
+        message: String(form.get('message') ?? ''),
+        website: String(form.get('website') ?? ''),
+      };
+    } else {
+      throw new Error('unsupported');
+    }
   } catch {
     return Response.json({ error: 'El formato del mensaje no es válido.' }, { status: 400 });
   }
